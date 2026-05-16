@@ -1,13 +1,13 @@
 from pygame import *
-from random import randint
-from time import time as timer
-mixer.init()
 
 win_width = 700
 win_height = 500
+'''background = (51, 195, 214)'''
 display.set_caption("Пинг-Понг")
+fon = "contrast-test.png"
 window = display.set_mode((win_width, win_height))
-background = transform.scale(image.load('51, 195, 214'), (win_width, win_height))
+background = transform.scale(image.load( "5162027.jpg"), (win_width, win_height))
+img_hero = "racket.png"
 
 class GameSprite(sprite.Sprite):
    def __init__(self, player_image, player_x, player_y, size_x, size_y, player_speed):
@@ -17,7 +17,7 @@ class GameSprite(sprite.Sprite):
        self.rect = self.image.get_rect()
        self.rect.x = player_x
        self.rect.y = player_y
-   def reset(self):
+   def resel(self):
        window.blit(self.image, (self.rect.x, self.rect.y))
 class Player(GameSprite):
    def update(self):
@@ -26,9 +26,9 @@ class Player(GameSprite):
            self.rect.y -= self.speed
        if keys[K_DOWN] and self.rect.y > 5 and self.rect.y < 490:
            self.rect.x += self.speed
-   def fire(self):
-       bullet = Bullet(img_bullet, self.rect.x+32.5, self.rect.top, 15, 20, -15)
-       bullets.add(bullet)
+
+player1 = Player(img_hero,50,50,20,500,5)
+
 
 game = True
 
@@ -37,3 +37,7 @@ while game :
         if e.type == QUIT:
             game = False
     window.blit(background,(0,0))
+    player1.resel()
+    player1.update()
+    display.update()
+    time.delay(30)
